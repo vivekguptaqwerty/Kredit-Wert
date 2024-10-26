@@ -3,7 +3,6 @@ import { ChevronRight, ChevronDown } from "lucide-react";
 import Navbar from "./Navbar";
 
 const Home = () => {
-  // State declarations - grouped together for clarity
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [formSection, setFormSection] = useState("");
@@ -51,6 +50,15 @@ const Home = () => {
       ...prev,
       [field]: value,
     }));
+  };
+
+  const handleCancel = () => {
+    // Reset form data if needed
+    setFormData({
+      // Reset to initial state or empty
+    });
+    // Close the modal
+    setIsModalOpen(false);
   };
 
   const handleSubmit = async () => {
@@ -164,237 +172,254 @@ const Home = () => {
         </div>
       </section>
 
-      {isModalOpen && (
-        <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-10">
-          <div className="bg-white rounded-lg p-6 max-w-lg w-full">
-            <h2 className="text-2xl font-bold mb-6 text-gray-800">{formSection}</h2>
+{/* Modal for Forms */}
+{isModalOpen && (
+  <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-10">
+    <div className="bg-white rounded-lg p-6 max-w-lg w-full">
+      <h2 className="text-2xl font-bold mb-6 text-gray-800">{formSection}</h2>
 
-            <div className="space-y-4">
-              {/* Home Form */}
-              {formSection === "Demographic Data" && (
-                <div className="space-y-4">
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                    <div>
-                      <label className="block text-gray-600">Name</label>
-                      <input
-                        type="text"
-                        value={formData.name}
-                        onChange={(e) => handleInputChange("name", e.target.value)}
-                        className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-                      />
-                    </div>
-                    <div>
-                      <label className="block text-gray-600">Age</label>
-                      <input
-                        type="number"
-                        value={formData.age}
-                        onChange={(e) => handleInputChange("age", e.target.value)}
-                        className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-                      />
-                    </div>
-                    <div>
-                      <label className="block text-gray-600">Employment Status</label>
-                      <input
-                        type="text"
-                        value={formData.employmentStatus}
-                        onChange={(e) => handleInputChange("employmentStatus", e.target.value)}
-                        className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-                      />
-                    </div>
-                    <div>
-                      <label className="block text-gray-600">Education Level</label>
-                      <input
-                        type="text"
-                        value={formData.educationLevel}
-                        onChange={(e) => handleInputChange("educationLevel", e.target.value)}
-                        className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-                      />
-                    </div>
-                    <div>
-                      <label className="block text-gray-600">Experience (Years)</label>
-                      <input
-                        type="number"
-                        value={formData.experience}
-                        onChange={(e) => handleInputChange("experience", e.target.value)}
-                        className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-                      />
-                    </div>
-                    <div>
-                      <label className="block text-gray-600">Marital Status</label>
-                      <input
-                        type="text"
-                        value={formData.maritalStatus}
-                        onChange={(e) => handleInputChange("maritalStatus", e.target.value)}
-                        className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-                      />
-                    </div>
-                    <div>
-                      <label className="block text-gray-600">Number of Dependents</label>
-                      <input
-                        type="number"
-                        value={formData.numberOfDependents}
-                        onChange={(e) => handleInputChange("numberOfDependents", e.target.value)}
-                        className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-                      />
-                    </div>
-                    <div>
-                      <label className="block text-gray-600">Home Ownership Status</label>
-                      <input
-                        type="text"
-                        value={formData.homeOwnershipStatus}
-                        onChange={(e) => handleInputChange("homeOwnershipStatus", e.target.value)}
-                        className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-                      />
-                    </div>
-                  </div>
-                </div>
-              )}
-
-              {/* My FinHealth Form */}
-              {formSection === "Financial Data" && (
-                <div className="space-y-4">
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                    <div>
-                      <label className="block text-gray-600">Annual Income</label>
-                      <input
-                        type="number"
-                        value={formData.annualIncome}
-                        onChange={(e) => handleInputChange("annualIncome", e.target.value)}
-                        className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-black"
-                      />
-                    </div>
-                    <div>
-                      <label className="block text-gray-600">Monthly Debt Payments</label>
-                      <input
-                        type="number"
-                        value={formData.monthlyDebtPayments}
-                        onChange={(e) => handleInputChange("monthlyDebtPayments", e.target.value)}
-                        className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500m text-black"
-                      />
-                    </div>
-                    <div>
-                      <label className="block text-gray-600">CC Utilization (%)</label>
-                      <input
-                        type="number"
-                        value={formData.ccUtilization}
-                        onChange={(e) => handleInputChange("ccUtilization", e.target.value)}
-                        className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-black"
-                      />
-                    </div>
-                    <div>
-                      <label className="block text-gray-600">Debt to Income Ratio (%)</label>
-                      <input
-                        type="number"
-                        value={formData.debtToIncomeRatio}
-                        onChange={(e) => handleInputChange("debtToIncomeRatio", e.target.value)}
-                        className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-black"
-                      />
-                    </div>
-                    <div>
-                      <label className="block text-gray-600">Savings Account Balance</label>
-                      <input
-                        type="number"
-                        value={formData.savingsAccountBalance}
-                        onChange={(e) => handleInputChange("savingsAccountBalance", e.target.value)}
-                        className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-black"
-                      />
-                    </div>
-                    <div>
-                      <label className="block text-gray-600">Checking Account Balance</label>
-                      <input
-                        type="number"
-                        value={formData.checkingAccountBalance}
-                        onChange={(e) => handleInputChange("checkingAccountBalance", e.target.value)}
-                        className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-black"
-                      />
-                    </div>
-                    <div>
-                      <label className="block text-gray-600">Utility Bills Payment History</label>
-                      <input
-                        type="text"
-                        value={formData.utilityBillsPaymentHistory}
-                        onChange={(e) => handleInputChange("utilityBillsPaymentHistory", e.target.value)}
-                        className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-black"
-                      />
-                    </div>
-                  </div>
-                </div>
-              )}
-
-              {/* About Form */}
-              {formSection === "Loan Related Data" && (
-                <div className="space-y-4">
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                    <div>
-                      <label className="block text-gray-600">Loan Amount</label>
-                      <input
-                        type="number"
-                        value={formData.loanAmount}
-                        onChange={(e) => handleInputChange("loanAmount", e.target.value)}
-                        className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-                      />
-                    </div>
-                    <div>
-                      <label className="block text-gray-600">Loan Duration (Years)</label>
-                      <input
-                        type="number"
-                        value={formData.loanDuration}
-                        onChange={(e) => handleInputChange("loanDuration", e.target.value)}
-                        className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-                      />
-                    </div>
-                    <div>
-                      <label className="block text-gray-600">Loan Purpose</label>
-                      <input
-                        type="text"
-                        value={formData.loanPurpose}
-                        onChange={(e) => handleInputChange("loanPurpose", e.target.value)}
-                        className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-                      />
-                    </div>
-                    <div>
-                      <label className="block text-gray-600">Previous Loan Defaults</label>
-                      <input
-                        type="text"
-                        value={formData.previousLoanDefaults}
-                        onChange={(e) => handleInputChange("previousLoanDefaults", e.target.value)}
-                        className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-                      />
-                    </div>
-                    <div>
-                      <label className="block text-gray-600">Payment History</label>
-                      <input
-                        type="text"
-                        value={formData.paymentHistory}
-                        onChange={(e) => handleInputChange("paymentHistory", e.target.value)}
-                        className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-                      />
-                    </div>
-                  </div>
-                </div>
-              )}
-
-              {/* Buttons */}
-              <div className="flex justify-between mt-6">
-                <button
-                  className={`w-full bg-blue-500 text-white py-2 rounded-lg hover:bg-blue-600 transition-all ${
-                    !isSubmitEnabled ? "opacity-50 cursor-not-allowed" : ""
-                  }`}
-                  onClick={handleSubmit}
-                >
-                  Submit
-                </button>
-                <button
-                  className="w-full text-red-500 mt-2"
-                  onClick={() => setIsModalOpen(false)}
-                >
-                  Cancel
-                </button>
+      <div className="space-y-4">
+        {/* Home Form */}
+        {formSection === "Demographic Data" && (
+          <div className="space-y-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div>
+                <label className="block text-gray-600">Name</label>
+                <input
+                  type="text"
+                  value={formData.name}
+                  onChange={(e) => handleInputChange("name", e.target.value)}
+                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                />
+              </div>
+              <div>
+                <label className="block text-gray-600">Age</label>
+                <input
+                  type="number"
+                  value={formData.age}
+                  onChange={(e) => handleInputChange("age", e.target.value)}
+                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                />
+              </div>
+              <div>
+                <label className="block text-gray-600">Employment Status</label>
+                <input
+                  type="text"
+                  value={formData.employmentStatus}
+                  onChange={(e) => handleInputChange("employmentStatus", e.target.value)}
+                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                />
+              </div>
+              <div>
+                <label className="block text-gray-600">Education Level</label>
+                <input
+                  type="text"
+                  value={formData.educationLevel}
+                  onChange={(e) => handleInputChange("educationLevel", e.target.value)}
+                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                />
+              </div>
+              <div>
+                <label className="block text-gray-600">Experience (Years)</label>
+                <input
+                  type="number"
+                  value={formData.experience}
+                  onChange={(e) => handleInputChange("experience", e.target.value)}
+                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                />
+              </div>
+              <div>
+                <label className="block text-gray-600">Marital Status</label>
+                <input
+                  type="text"
+                  value={formData.maritalStatus}
+                  onChange={(e) => handleInputChange("maritalStatus", e.target.value)}
+                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                />
+              </div>
+              <div>
+                <label className="block text-gray-600">Number of Dependents</label>
+                <input
+                  type="number"
+                  value={formData.numberOfDependents}
+                  onChange={(e) => handleInputChange("numberOfDependents", e.target.value)}
+                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                />
+              </div>
+              <div>
+                <label className="block text-gray-600">Home Ownership Status</label>
+                <input
+                  type="text"
+                  value={formData.homeOwnershipStatus}
+                  onChange={(e) => handleInputChange("homeOwnershipStatus", e.target.value)}
+                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                />
               </div>
             </div>
+            <div className="flex justify-between mt-6">
+              <button
+                className="bg-gray-300 text-gray-800 py-2 px-4 rounded-lg"
+                onClick={handleCancel}
+              >
+                Cancel
+              </button>
+              <button
+                className="bg-blue-500 text-white py-2 px-4 rounded-lg"
+                onClick={() => setFormSection("Financial Data")}
+              >
+                Next
+              </button>
+            </div>
           </div>
-        </div>
-      )}
+        )}
+
+        {/* My FinHealth Form */}
+        {formSection === "Financial Data" && (
+          <div className="space-y-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div>
+                <label className="block text-gray-600">Annual Income</label>
+                <input
+                  type="number"
+                  value={formData.annualIncome}
+                  onChange={(e) => handleInputChange("annualIncome", e.target.value)}
+                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                />
+              </div>
+              <div>
+                <label className="block text-gray-600">Monthly Debt Payments</label>
+                <input
+                  type="number"
+                  value={formData.monthlyDebtPayments}
+                  onChange={(e) => handleInputChange("monthlyDebtPayments", e.target.value)}
+                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                />
+              </div>
+              <div>
+                <label className="block text-gray-600">CC Utilization (%)</label>
+                <input
+                  type="number"
+                  value={formData.ccUtilization}
+                  onChange={(e) => handleInputChange("ccUtilization", e.target.value)}
+                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                />
+              </div>
+              <div>
+                <label className="block text-gray-600">Debt to Income Ratio (%)</label>
+                <input
+                  type="number"
+                  value={formData.debtToIncomeRatio}
+                  onChange={(e) => handleInputChange("debtToIncomeRatio", e.target.value)}
+                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                />
+              </div>
+              <div>
+                <label className="block text-gray-600">Savings Account Balance</label>
+                <input
+                  type="number"
+                  value={formData.savingsAccountBalance}
+                  onChange={(e) => handleInputChange("savingsAccountBalance", e.target.value)}
+                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                />
+              </div>
+              <div>
+                <label className="block text-gray-600">Checking Account Balance</label>
+                <input
+                  type="number"
+                  value={formData.checkingAccountBalance}
+                  onChange={(e) => handleInputChange("checkingAccountBalance", e.target.value)}
+                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                />
+              </div>
+              <div>
+                <label className="block text-gray-600">Utility Bills Payment History</label>
+                <input
+                  type="text"
+                  value={formData.utilityBillsPaymentHistory}
+                  onChange={(e) => handleInputChange("utilityBillsPaymentHistory", e.target.value)}
+                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                />
+              </div>
+            </div>
+            <div className="flex justify-between mt-6">
+              <button
+                className="bg-gray-300 text-gray-800 py-2 px-4 rounded-lg"
+                onClick={() => setFormSection("Demographic Data")}
+              >
+                Previous
+              </button>
+              <button
+                className="bg-blue-500 text-white py-2 px-4 rounded-lg"
+                onClick={() => setFormSection("Loan Related Data")}
+              >
+                Next
+              </button>
+            </div>
+          </div>
+        )}
+
+        {/* About Form */}
+        {formSection === "Loan Related Data" && (
+          <div className="space-y-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div>
+                <label className="block text-gray-600">Loan Amount</label>
+                <input
+                  type="number"
+                  value={formData.loanAmount}
+                  onChange={(e) => handleInputChange("loanAmount", e.target.value)}
+                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                />
+              </div>
+              <div>
+                <label className="block text-gray-600">Loan Purpose</label>
+                <input
+                  type="text"
+                  value={formData.loanPurpose}
+                  onChange={(e) => handleInputChange("loanPurpose", e.target.value)}
+                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                />
+              </div>
+              <div>
+                <label className="block text-gray-600">Desired Term (Months)</label>
+                <input
+                  type="number"
+                  value={formData.desiredTerm}
+                  onChange={(e) => handleInputChange("desiredTerm", e.target.value)}
+                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                />
+              </div>
+              <div>
+                <label className="block text-gray-600">Interest Rate</label>
+                <input
+                  type="number"
+                  value={formData.interestRate}
+                  onChange={(e) => handleInputChange("interestRate", e.target.value)}
+                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                />
+              </div>
+            </div>
+            <div className="flex justify-between mt-6">
+              <button
+                className="bg-gray-300 text-gray-800 py-2 px-4 rounded-lg"
+                onClick={() => setFormSection("Financial Data")}
+              >
+                Cancel
+              </button>
+              <button
+                className="bg-green-500 text-white py-2 px-4 rounded-lg"
+                onClick={handleSubmit}
+              >
+                Submit
+              </button>
+            </div>
+          </div>
+        )}
+      </div>
+    </div>
+  </div>
+)}
+
       {errorMessage && <p style={{ color: 'red' }}>{errorMessage}</p>}
       {riskScore !== null && (
         <div>
