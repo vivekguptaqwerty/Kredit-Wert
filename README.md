@@ -1,3 +1,5 @@
+MAIN CODE FOR THIS PROJECT IS INSIDE THE BRANCH vivek.
+
 # Kredit-Wert
 
 Our project, *Kredit-Wert*, aligns seamlessly with the Finance - Student Track by addressing the pressing need for innovative credit assessment methods in the evolving financial landscape. Traditional credit scoring systems often rely heavily on historical financial behavior, which can disadvantage many individuals, particularly those from marginalized backgrounds who may not have an established credit history. Our platform tackles this issue by leveraging alternative data sources—such as utility payments, rental history, and social media interactions—to create a more holistic view of an individual's creditworthiness.
