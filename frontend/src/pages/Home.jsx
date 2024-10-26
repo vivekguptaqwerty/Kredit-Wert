@@ -51,6 +51,7 @@ const Home = () => {
       [field]: value,
     }));
   };
+  
 
   const handleCancel = () => {
     // Reset form data if needed
@@ -126,12 +127,12 @@ const Home = () => {
       
       {/* Hero Section */}
       <section className="relative h-screen flex items-center justify-center overflow-hidden">
-        <div className="text-center z-2 space-y-8 p-12 rounded-3xl backdrop-blur-lg bg-white/5 shadow-md transition-all duration-500">
-          <h1 className="text-6xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-600 drop-shadow-lg">
-            Welcome to the Future of Credit
+        <div className="text-center z-2 space-y-8 p-14 rounded-3xl backdrop-blur-lg bg-white/5 shadow-md transition-all duration-500">
+          <h1 className="text-7xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-600 drop-shadow-lg">
+            Kredit-Wert
           </h1>
-          <p className="text-2xl text-blue-200">
-            Powered by You
+          <p className="text-4xl text-blue-200">
+          Welcome to the Future of Credit
           </p>
           <button
             className="px-8 py-4 bg-gradient-to-r from-purple-600 to-blue-500 rounded-full text-xl font-bold transform hover:scale-105 transition-all"
@@ -360,169 +361,149 @@ const Home = () => {
 
         {/* About Form */}
         {formSection === "Loan Related Data" && (
-          <div className="space-y-4">
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              <div>
-                <label className="block text-gray-600">Loan Amount</label>
-                <input
-                  type="number"
-                  value={formData.loanAmount}
-                  onChange={(e) => handleInputChange("loanAmount", e.target.value)}
-                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-                />
-              </div>
-              <div>
-                <label className="block text-gray-600">Loan Purpose</label>
-                <input
-                  type="text"
-                  value={formData.loanPurpose}
-                  onChange={(e) => handleInputChange("loanPurpose", e.target.value)}
-                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-                />
-              </div>
-              <div>
-                <label className="block text-gray-600">Desired Term (Months)</label>
-                <input
-                  type="number"
-                  value={formData.desiredTerm}
-                  onChange={(e) => handleInputChange("desiredTerm", e.target.value)}
-                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-                />
-              </div>
-              <div>
-                <label className="block text-gray-600">Interest Rate</label>
-                <input
-                  type="number"
-                  value={formData.interestRate}
-                  onChange={(e) => handleInputChange("interestRate", e.target.value)}
-                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-                />
-              </div>
-            </div>
-            <div className="flex justify-between mt-6">
-              <button
-                className="bg-gray-300 text-gray-800 py-2 px-4 rounded-lg"
-                onClick={() => setFormSection("Financial Data")}
-              >
-                Cancel
-              </button>
-              <button
-                className="bg-green-500 text-white py-2 px-4 rounded-lg"
-                onClick={handleSubmit}
-              >
-                Submit
-              </button>
-            </div>
-          </div>
+  <div className="space-y-4">
+    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+      <div>
+        <label className="block text-gray-600">Loan Amount</label>
+        <input
+          type="number"
+          value={formData.loanAmount}
+          onChange={(e) => handleInputChange("loanAmount", e.target.value)}
+          className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+        />
+      </div>
+      <div>
+        <label className="block text-gray-600">Loan Purpose</label>
+        <input
+          type="text"
+          value={formData.loanPurpose}
+          onChange={(e) => handleInputChange("loanPurpose", e.target.value)}
+          className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+        />
+      </div>
+      <div>
+        <label className="block text-gray-600">Desired Term (Months)</label>
+        <input
+          type="number"
+          value={formData.desiredTerm}
+          onChange={(e) => handleInputChange("desiredTerm", e.target.value)}
+          className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+        />
+      </div>
+      <div>
+        <label className="block text-gray-600">Interest Rate</label>
+        <input
+          type="number"
+          value={formData.interestRate}
+          onChange={(e) => handleInputChange("interestRate", e.target.value)}
+          className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+        />
+      </div>
+    </div>
+    <div className="flex justify-between mt-6">
+      <button
+        className="bg-gray-300 text-gray-800 py-2 px-4 rounded-lg"
+        onClick={() => setFormSection("Financial Data")}
+      >
+        Cancel
+      </button>
+      <button
+        className="bg-green-500 text-white py-2 px-4 rounded-lg"
+        onClick={handleSubmit}
+      >
+        Submit
+      </button>
+    </div>
+  </div>
         )}
       </div>
     </div>
   </div>
 )}
 
-      {errorMessage && <p style={{ color: 'red' }}>{errorMessage}</p>}
-      {riskScore !== null && (
-        <div>
-          <h2>Prediction Result:</h2>
-          <p><strong>Risk Score:</strong> {riskScore}</p>
-          <p><strong>Risk Level:</strong> {riskLevel}</p>
-          <p><strong>Explanation:</strong> {explanation}</p>
-        </div>
-      )}
+<div className="w-1/2 relative z-20 p-12 rounded-lg bg-purple-700 bg-opacity-70 backdrop-blur-md shadow-lg mx-auto">
+  {errorMessage && <p className="text-red-500 font-semibold">{errorMessage}</p>}
+  {riskScore !== null && (
+    <div>
+      <h2 className="text-gradient text-2xl font-semibold text-shadow">Prediction Result:</h2>
+      <p className="text-yellow-300 text-lg text-shadow"><strong>Risk Score:</strong> {riskScore}</p>
+      <p className="text-green-400 text-lg text-shadow"><strong>Risk Level:</strong> {riskLevel}</p>
+      <p className="text-white text-lg text-shadow"><strong>Explanation:</strong> {explanation}</p>
+    </div>
+  )}
+</div>
+
+
 
       {/* Features Section */}
-      <section className="py-20 px-8 text-center bg-gradient-to-b from-gray-900 to-blue-800">
+      <section className="py-20 px-8 text-center bg-gradient-to-b from-gray-900 to-blue-800 text-center" id="features">
         <h2 className="text-4xl font-bold text-blue-300 mb-8">
           Our Features
         </h2>
-        <div className="grid gap-8 md:grid-cols-3 text-left">
+        <div className="grid gap-8 md:grid-cols-3">
           <div className="bg-white/10 p-6 rounded-lg shadow-md">
             <h3 className="text-2xl font-bold text-blue-200">
               AI-Powered Analysis
             </h3>
-            <p className="text-blue-100">
-              Leverage advanced AI to assess credit eligibility with speed and accuracy.
+            <p className="text-blue-100 mt-4">
+            Our platform goes beyond traditional credit checks by incorporating utility bills, rent payments, social media presence, and telecom data. These alternative data sources offer a more comprehensive view of financial behaviors and reliability, ensuring that credit assessments are well-rounded and inclusive.
             </p>
           </div>
           <div className="bg-white/10 p-6 rounded-lg shadow-md">
             <h3 className="text-2xl font-bold text-blue-200">
               Secure Data Processing
             </h3>
-            <p className="text-blue-100">
-              We use state-of-the-art encryption to protect your financial data.
+            <p className="text-blue-100 mt-4">
+            We prioritize the security of your financial data by employing state-of-the-art encryption technologies. Our advanced encryption protocols ensure that all sensitive information is safeguarded against unauthorized access, providing peace of mind as you navigate your financial journey.
             </p>
           </div>
           <div className="bg-white/10 p-6 rounded-lg shadow-md">
             <h3 className="text-2xl font-bold text-blue-200">
-              Instant Feedback
+            Transparent Explanations   
             </h3>
-            <p className="text-blue-100">
-              Receive immediate insights into your creditworthiness.
+            <p className="text-blue-100 mt-4">
+            Our platform offers clear and comprehensive insights into risk assessments for every borrower, powered by advanced GPT-generated analytics. We believe in transparency, providing users with easy-to-understand explanations of how their creditworthiness is evaluated.
             </p>
           </div>
         </div>
       </section>
 
       {/* How It Works Section */}
-      <section className="py-20 px-8 text-center bg-gradient-to-b from-blue-800 to-gray-900">
+      <section className="py-20 px-8 text-center bg-gradient-to-b from-blue-800 to-gray-900" id="how it works">
         <h2 className="text-4xl font-bold text-blue-300 mb-8">
           How It Works
         </h2>
-        <div className="grid gap-8 md:grid-cols-3 text-left">
+        <div className="grid gap-8 md:grid-cols-3 text-center">
           <div className="bg-white/10 p-6 rounded-lg shadow-md">
             <h3 className="text-2xl font-bold text-blue-200">
               Step 1: Assessment
             </h3>
-            <p className="text-blue-100">
-              Fill out your details for an initial assessment of your credit profile.
+            <p className="text-blue-100 mt-4">
+            To begin your journey toward a clearer understanding of your financial health, fill out your details for an initial assessment of your credit profile. This simple and secure form will collect essential information, including your income, existing debts, and other financial obligations. Our user-friendly interface ensures a smooth experience, guiding you through each step.
             </p>
           </div>
           <div className="bg-white/10 p-6 rounded-lg shadow-md">
             <h3 className="text-2xl font-bold text-blue-200">
               Step 2: AI Analysis
             </h3>
-            <p className="text-blue-100">
-              Our AI evaluates your data and provides personalized insights.
+            <p className="text-blue-100 mt-4">
+            Our advanced AI technology meticulously evaluates your financial data to generate personalized insights tailored to your unique situation. By analyzing various factors—such as your spending habits, income patterns, and credit history—our AI uncovers meaningful trends and provides actionable recommendations.
             </p>
           </div>
           <div className="bg-white/10 p-6 rounded-lg shadow-md">
             <h3 className="text-2xl font-bold text-blue-200">
               Step 3: Results
             </h3>
-            <p className="text-blue-100">
-              Receive actionable recommendations to improve your credit.
+            <p className="text-blue-100 mt-4">
+            Upon completing your assessment, you will receive tailored, actionable recommendations designed to enhance your credit profile. Our AI-driven insights highlight specific steps you can take to improve your credit score and overall financial health. These recommendations may include strategies such as managing existing debts, optimizing your credit utilization, and making timely payments.
             </p>
           </div>
         </div>
       </section>
 
-      {/* Testimonials Section */}
-      <section className="py-20 px-8 text-center bg-gradient-to-b from-gray-900 to-blue-800">
-        <h2 className="text-4xl font-bold text-blue-300 mb-8">
-          What Our Users Say
-        </h2>
-        <div className="grid gap-8 md:grid-cols-2 text-left">
-          <div className="bg-white/10 p-6 rounded-lg shadow-md">
-            <p className="text-blue-100">
-              "A game-changer for managing my finances. Quick and reliable results!"
-            </p>
-            <h3 className="mt-4 font-semibold text-blue-200">
-              – Jane D.
-            </h3>
-          </div>
-          <div className="bg-white/10 p-6 rounded-lg shadow-md">
-            <p className="text-blue-100">
-              "The AI insights helped me secure my first loan with ease. Highly recommend."
-            </p>
-            <h3 className="mt-4 font-semibold text-blue-200">
-              – Mark T.
-            </h3>
-          </div>
-        </div>
-      </section>
 
       {/* FAQ Section */}
-      <section className="py-20 px-8 text-center bg-gradient-to-b from-blue-800 to-gray-900">
+      <section className="py-20 px-8 text-center bg-gradient-to-b from-blue-800 to-gray-900" id="faqs">
         <h2 className="text-4xl font-bold text-blue-300 mb-8">
           FAQs
         </h2>
@@ -545,7 +526,11 @@ const Home = () => {
           </div>
         </div>
       </section>
+      <footer className="py-8 text-center text-gray-400">
+          <p>&copy; 2024 Kredit-Wert. All rights reserved.</p>
+        </footer>
     </div>
+          
   );
 };
 

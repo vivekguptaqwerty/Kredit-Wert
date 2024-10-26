@@ -41,14 +41,14 @@ const Navbar = () => {
     <>
       <nav ref={navbarRef} className="backdrop-filter backdrop-blur-lg bg-blue-900 bg-opacity-30 shadow-sm shadow-zinc-600 fixed w-full z-10 p-2">
         <div className="w-4/5 mx-auto px-6 py-3 flex justify-between items-center">
-          <a href="/" className="flex items-center space-x-2 text-2xl text-cyan-400">
-            
+          <a href="/" className="flex items-center space-x-2 text-2xl text-purple-400 font-semibold">
+          Kredit-Wert
           </a>
 
           <div className="space-x-20 text-xl">
-            <ScrollLink to='about' className="hover:text-cyan-300 transition-colors cursor-pointer">About</ScrollLink>
-            <ScrollLink to='highlights' className="hover:text-cyan-300 transition-colors cursor-pointer">Highlights</ScrollLink>
-            <ScrollLink to='partners' className="hover:text-cyan-300 transition-colors cursor-pointer">Partners</ScrollLink>
+            <ScrollLink to='features' className="hover:text-cyan-300 transition-colors cursor-pointer">Features</ScrollLink>
+            <ScrollLink to='how it works' className="hover:text-cyan-300 transition-colors cursor-pointer">How it Works</ScrollLink>
+            <ScrollLink to='faqs' className="hover:text-cyan-300 transition-colors cursor-pointer">FAQs</ScrollLink>
           </div>
         </div>
       </nav>
